@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
 
@@ -12,39 +13,40 @@
 
   <name>azure-project-v26</name>
 
-  <!-- ===================================================== -->
-  <!-- REQUIRED FOR mule-application PACKAGING -->
-  <!-- ===================================================== -->
-  <extensions>
-    <extension>
-      <groupId>org.mule.tools.maven</groupId>
-      <artifactId>mule-maven-plugin</artifactId>
-      <version>4.6.0</version>
-    </extension>
-  </extensions>
-
+  <!-- ================================================= -->
+  <!-- PROPERTIES -->
+  <!-- ================================================= -->
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <!-- Mule Runtime -->
+    <!-- Mule -->
     <app.runtime>4.9.0</app.runtime>
+    <mule.maven.plugin.version>4.6.0</mule.maven.plugin.version>
 
-    <!-- REQUIRED DEFAULTS (prevent validate failure) -->
+    <!-- Required defaults for validate -->
     <anypoint.environment>Sandbox</anypoint.environment>
     <secure.key>dummy</secure.key>
     <mule.env>dev</mule.env>
-
-    <!-- Plugin Versions -->
-    <mule.maven.plugin.version>4.6.0</mule.maven.plugin.version>
-    <munit.version>2.3.5</munit.version>
 
     <!-- Java -->
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
   </properties>
 
+  <!-- ================================================= -->
+  <!-- BUILD -->
+  <!-- ================================================= -->
   <build>
+
+    <!-- 🔴 EXTENSIONS MUST BE HERE (NOT TOP LEVEL) -->
+    <extensions>
+      <extension>
+        <groupId>org.mule.tools.maven</groupId>
+        <artifactId>mule-maven-plugin</artifactId>
+        <version>${mule.maven.plugin.version}</version>
+      </extension>
+    </extensions>
+
     <plugins>
 
       <!-- Mule Maven Plugin -->
@@ -70,17 +72,14 @@
         </configuration>
       </plugin>
 
-      <!-- MUnit Plugin (safe even if tests skipped) -->
-      <plugin>
-        <groupId>com.mulesoft.munit.tools</groupId>
-        <artifactId>munit-maven-plugin</artifactId>
-        <version>${munit.version}</version>
-      </plugin>
-
     </plugins>
   </build>
 
+  <!-- ================================================= -->
+  <!-- DEPENDENCIES -->
+  <!-- ================================================= -->
   <dependencies>
+
     <dependency>
       <groupId>org.mule.connectors</groupId>
       <artifactId>mule-http-connector</artifactId>
@@ -108,8 +107,12 @@
       <version>1.3.0</version>
       <classifier>mule-plugin</classifier>
     </dependency>
+
   </dependencies>
 
+  <!-- ================================================= -->
+  <!-- REPOSITORIES -->
+  <!-- ================================================= -->
   <repositories>
     <repository>
       <id>anypoint-exchange-v3</id>
