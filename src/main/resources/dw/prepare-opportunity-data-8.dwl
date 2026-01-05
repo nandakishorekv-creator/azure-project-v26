@@ -1,0 +1,11 @@
+%dw 2.0
+output application/java
+---
+[{
+  Name: payload.name,
+  StageName: payload.stageName,
+  CloseDate: payload.closeDate,
+  Amount: payload.amount,
+  AccountId: payload.accountId,
+  Description: payload.description
+}]

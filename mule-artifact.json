@@ -1,0 +1,10 @@
+{
+  "minMuleVersion": "4.4.0",
+  "secureProperties": [
+    "keystore.password",
+    "keystore.key.password",
+    "salesforce.username",
+    "salesforce.password",
+    "salesforce.security.token"
+  ]
+}
